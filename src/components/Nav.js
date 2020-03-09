@@ -19,6 +19,9 @@ const Nav = props => {
           <Link to="/private">Private API</Link>
         </li>
         <li>
+          <Link to="/courses">Courses</Link>
+        </li>
+        <li>
           <button onClick={isAuthenticated() ? logout : login}>
             {isAuthenticated() ? "Logout" : "login"}
           </button>

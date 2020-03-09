@@ -8,6 +8,7 @@ import Auth from "../Auth/Auth";
 import Nav from "../components/Nav";
 import Public from "../pages/Public";
 import Private from "../pages/Private";
+import Courses from "../pages/Courses";
 
 const Routes = props => {
   const auth = new Auth(props.history);
@@ -40,6 +41,16 @@ const Routes = props => {
           render={props =>
             auth.isAuthenticated() ? (
               <Private auth={auth} {...props} />
+            ) : (
+              <Redirect to="/" />
+            )
+          }
+        />
+        <Route
+          path="/courses"
+          render={props =>
+            auth.isAuthenticated() && auth.userHasScope(["read:courses"]) ? (
+              <Courses auth={auth} {...props} />
             ) : (
               <Redirect to="/" />
             )
